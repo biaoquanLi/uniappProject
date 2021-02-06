@@ -1,6 +1,6 @@
 <template>
 	<view>
-		我的
+		我的1
 	</view>
 </template>
 
