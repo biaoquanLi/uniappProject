@@ -1,9 +1,7 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
+		<navbar></navbar>
+		<tab :list="labelList"></tab>
 	</view>
 </template>
 
@@ -11,42 +9,27 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				labelList:[]
 			}
 		},
 		onLoad() {
-
+			this.getLabel()
 		},
 		methods: {
-
+			getLabel(){
+				uniCloud.callFunction({
+					name:'label_list'
+				}).then(res=>{
+					const {result} = res
+					if(result.code === 200){
+						this.labelList = result.data
+					}
+				})
+			}
 		}
 	}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+<style lang="scss">
+	
 </style>

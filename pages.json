@@ -3,7 +3,8 @@
 		{
 			"path": "pages/tabbar/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationStyle":"custom",
+				"navigationBarTextStyle":"white"
 			}
 		}
 	    ,{
