@@ -3,6 +3,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "navbar": "/components/navbar/navbar",
-    "tab": "/components/tab/tab"
+    "tab": "/components/tab/tab",
+    "list": "/components/list/list"
   }
 }

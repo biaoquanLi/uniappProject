@@ -2,7 +2,7 @@
 	<view class="tab">
 		<scroll-view class="tab-scroll" scroll-x>
 			<view class="tab-scroll__box">
-				<view v-for="(item, index) in list" :key="index" class="tab-scroll__item" 
+				<view v-for="(item, index) in list" :key="index" class="tab-scroll__item" :class="{'active':activeIndex === index}" @click="clickTab(item,index)" 
 				 >{{item.name}}</view>
 			</view>
 		</scroll-view>
@@ -17,17 +17,33 @@
 		props:{
 			list:{
 				type:Array
+			},
+			currentIndex:{
+				type:Number,
+				default:0
 			}
+		},
+		watch:{
+			currentIndex(newVal,oldVal){
+				this.activeIndex = newVal
+			}	
 		},
 		data() {
 			return {
+				activeIndex:0
 			};
+		},
+		methods:{
+			clickTab(item,index){
+				this.activeIndex = index
+				this.$emit('tab',{item,index})
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-.tab {
+.tab {	
 		display: flex;
 		width: 100%;
 		border-bottom: 1px #f5f5f5 solid;
@@ -52,9 +68,9 @@
 					color: #333;
 					font-size: 14px;
 
-					// &.active {
-					// 	color: $mk-base-color;
-					// }
+					&.active {
+						color: $mk-base-color;
+					}
 				}
 			}
 		}
