@@ -1,6 +1,6 @@
 <template>
 	<view class="scroll">
-		<scroll-view scroll-y="true" class="list-scroll" >
+		<scroll-view scroll-y="true" class="list-scroll" @scrolltolower="loadMore">
 			<view>
 				<slot></slot>
 			</view>
@@ -14,6 +14,11 @@
 			return {
 				
 			};
+		},
+		methods:{
+			loadMore(){
+				this.$emit("loadMore")
+			}
 		}
 	}
 </script>
@@ -24,7 +29,7 @@
 		overflow: hidden;
 		box-sizing: border-box;
 		.list-scroll {
-			height: 100vh;
+			height: 85vh;
 			display: flex;
 			flex-direction: column;
 		}

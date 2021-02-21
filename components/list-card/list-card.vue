@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view @click="toArticlDetail">
 		<!-- 基础卡片 -->
 		<view class="list-card" v-if="item.mode === 'base'">
 			<view class="listcard-image">
@@ -8,6 +8,7 @@
 			<view class="listcard-content">
 				<view class="listcard-content-title">
 					<text>{{item.title}}</text>
+					<likes :articleId='item._id' :isLike="item.is_like"></likes>
 				</view>
 				<view class="listcard-content-des">
 					<view class="listcard-content-tag">
@@ -26,7 +27,9 @@
 			<view class="listcard-content mode-column">
 				<view class="listcard-content-title">
 					<text>{{item.title}}</text>
+					<likes :articleId='item._id' :isLike="item.is_like"></likes>
 				</view>
+				
 				<view class="listcard-image">
 					<view v-if="index<3" class="listcard-image-item" v-for="(coverItem,index) in item.cover" :key="index">
 						<image :src="coverItem" mode="aspectFill"></image>
@@ -52,6 +55,7 @@
 			<view class="listcard-content ">
 				<view class="listcard-content-title">
 					<text>{{item.title}}</text>
+					<likes :articleId='item._id' :isLike="item.is_like"></likes>
 				</view>
 
 				<view class="listcard-content-des">
@@ -83,6 +87,11 @@
 			return {
 
 			};
+		},
+		methods:{
+			toArticlDetail(){
+				console.log('去详情页')
+			}
 		}
 	}
 </script>
@@ -117,6 +126,8 @@
 			width: 100%;
 
 			.listcard-content-title {
+				position: relative;
+				padding-right: 30px;
 				font-size: 14px;
 				color: #333333;
 				font-weight: 400;
@@ -131,6 +142,7 @@
 					line-clamp: 2;
 					-webkit-box-orient: vertical;
 				}
+				
 			}
 
 			.listcard-content-des {

@@ -38,7 +38,7 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": ""
+      "desc": "scope.userLocation"
     }
   },
   "usingComponents": {}

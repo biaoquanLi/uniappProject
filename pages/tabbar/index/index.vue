@@ -26,10 +26,13 @@
 			},
 			tab({item,index}){
 				this.activeIndex = index
+				
 			},
 			getLabel(){
-				this.$api.http({url:'label_list'}).then(res => {
-					this.labelList = res
+				this.$api.http('label_list').then(res => {
+					const {data} = res
+					data.unshift({name:'全部'})
+					this.labelList = data
 				})
 			}
 		}

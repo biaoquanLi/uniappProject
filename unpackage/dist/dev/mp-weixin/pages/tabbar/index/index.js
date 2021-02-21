@@ -115,7 +115,7 @@ try {
       return __webpack_require__.e(/*! import() | components/tab/tab */ "components/tab/tab").then(__webpack_require__.bind(null, /*! @/components/tab/tab.vue */ 44))
     },
     list: function() {
-      return __webpack_require__.e(/*! import() | components/list/list */ "components/list/list").then(__webpack_require__.bind(null, /*! @/components/list/list.vue */ 80))
+      return __webpack_require__.e(/*! import() | components/list/list */ "components/list/list").then(__webpack_require__.bind(null, /*! @/components/list/list.vue */ 51))
     }
   }
 } catch (e) {
@@ -198,10 +198,13 @@ var _default =
     },
     tab: function tab(_ref) {var item = _ref.item,index = _ref.index;
       this.activeIndex = index;
+
     },
     getLabel: function getLabel() {var _this = this;
-      this.$api.http({ url: 'label_list' }).then(function (res) {
-        _this.labelList = res;
+      this.$api.http('label_list').then(function (res) {var
+        data = res.data;
+        data.unshift({ name: '全部' });
+        _this.labelList = data;
       });
     } } };exports.default = _default;
 
