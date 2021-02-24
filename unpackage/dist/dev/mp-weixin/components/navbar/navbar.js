@@ -161,14 +161,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var _default =
 {
+  props: {
+    isSearch: {
+      type: Boolean,
+      default: false } },
+
+
   data: function data() {
     return {
       statusBarHeight: 20,
       navBarHeight: 45,
       windowWidth: 375 };
-
 
   },
   created: function created() {
@@ -183,7 +192,23 @@ var _default =
     this.navBarHeight = menuButtonInfo.bottom - info.statusBarHeight + (menuButtonInfo.top - info.statusBarHeight);
     this.windowWidth = menuButtonInfo.left;
 
-  } };exports.default = _default;
+  },
+  methods: {
+    back: function back() {
+      uni.switchTab({
+        url: '/pages/tabbar/index/index' });
+
+    },
+    open: function open() {
+      if (this.isSearch) return;
+      uni.navigateTo({
+        url: '/pages/home-search/home-search' });
+
+    },
+    input: function input(e) {var
+      value = e.detail.value;
+      this.$emit('input', value);
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
