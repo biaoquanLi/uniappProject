@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/home-search/home-search",
     "pages/tabbar/index/index",
+    "pages/home-search/home-search",
     "pages/tabbar/follow/follow",
-    "pages/tabbar/my/my"
+    "pages/tabbar/my/my",
+    "pages/home-label/home-label"
   ],
   "subPackages": [],
   "window": {

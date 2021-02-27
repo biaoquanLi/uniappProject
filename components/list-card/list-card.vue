@@ -91,6 +91,7 @@
 		methods:{
 			toArticlDetail(){
 				console.log('去详情页')
+				this.$emit('click')
 			}
 		}
 	}

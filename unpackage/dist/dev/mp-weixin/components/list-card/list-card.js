@@ -230,6 +230,7 @@ var _default2 =
   methods: {
     toArticlDetail: function toArticlDetail() {
       console.log('去详情页');
+      this.$emit('click');
     } } };exports.default = _default2;
 
 /***/ }),

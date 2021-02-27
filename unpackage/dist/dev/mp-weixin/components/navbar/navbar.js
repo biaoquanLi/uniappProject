@@ -168,6 +168,10 @@ __webpack_require__.r(__webpack_exports__);
 var _default =
 {
   props: {
+    value: {
+      type: [String, Number],
+      default: '' },
+
     isSearch: {
       type: Boolean,
       default: false } },
@@ -177,9 +181,15 @@ var _default =
     return {
       statusBarHeight: 20,
       navBarHeight: 45,
-      windowWidth: 375 };
+      windowWidth: 375,
+      val: '' };
 
   },
+  watch: {
+    value: function value(newVal) {
+      this.val = newVal;
+    } },
+
   created: function created() {
     var info = uni.getSystemInfoSync();
     this.statusBarHeight = info.statusBarHeight;
@@ -204,6 +214,10 @@ var _default =
       uni.navigateTo({
         url: '/pages/home-search/home-search' });
 
+    },
+    confirm: function confirm(e) {var
+      value = e.detail.value;
+      this.$emit('confirm', value);
     },
     input: function input(e) {var
       value = e.detail.value;
