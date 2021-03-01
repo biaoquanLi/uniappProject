@@ -14,7 +14,6 @@ const store = new Vuex.Store({
 		},
 		CLEAR_HISTORY_LIST(state){
 			state.historyList = []
-			
 		}
 	},
 	actions:{

@@ -34,6 +34,8 @@
 		watch:{
 			tab(newVal){
 				if(newVal.length === 0) return
+				this.listDataCash={},
+				this.pageLoad={}
 				this.getList(0)
 			}
 		},

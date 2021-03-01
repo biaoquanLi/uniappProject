@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -213,6 +213,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 var _default2 =
+
 {
   props: {
     item: {
@@ -228,10 +229,14 @@ var _default2 =
 
   },
   methods: {
-    toArticlDetail: function toArticlDetail() {
-      console.log('去详情页');
+    toArticleDetail: function toArticleDetail() {
       this.$emit('click');
+      uni.navigateTo({
+        url: '/pages/home-detail/home-detail?article_id=' + this.item._id });
+
+
     } } };exports.default = _default2;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

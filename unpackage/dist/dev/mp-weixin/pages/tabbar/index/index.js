@@ -170,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -189,8 +189,14 @@ var _default =
       activeIndex: 0 };
 
   },
-  onLoad: function onLoad() {
+  onLoad: function onLoad() {var _this = this;
     this.getLabel();
+    uni.$on('changeLabel', function (res) {
+      _this.labelList = [];
+      _this.currentIndex = 0;
+      _this.activeIndex = 0;
+      _this.getLabel();
+    });
   },
   methods: {
     swiperChange: function swiperChange(current) {
@@ -200,13 +206,14 @@ var _default =
       this.activeIndex = index;
 
     },
-    getLabel: function getLabel() {var _this = this;
-      this.$api.http('label_list').then(function (res) {var
+    getLabel: function getLabel() {var _this2 = this;
+      this.$api.http('get_label', { user_id: '601e61e354a29f0001b6916b' }).then(function (res) {var
         data = res.data;
         data.unshift({ name: '全部' });
-        _this.labelList = data;
+        _this2.labelList = data;
       });
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 23 */

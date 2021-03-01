@@ -19,6 +19,12 @@
 		},
 		onLoad() {
 			this.getLabel()
+			uni.$on('changeLabel',res => {
+				this.labelList=[]
+				this.currentIndex=0
+				this.activeIndex=0
+				this.getLabel()
+			})
 		},
 		methods: {
 			swiperChange(current){
@@ -29,7 +35,7 @@
 				
 			},
 			getLabel(){
-				this.$api.http('label_list').then(res => {
+				this.$api.http('get_label',{user_id:'601e61e354a29f0001b6916b'}).then(res => {
 					const {data} = res
 					data.unshift({name:'全部'})
 					this.labelList = data

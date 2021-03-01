@@ -150,6 +150,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   watch: {
     tab: function tab(newVal) {
       if (newVal.length === 0) return;
+      this.listDataCash = {},
+      this.pageLoad = {};
       this.getList(0);
     } },
 

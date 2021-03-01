@@ -22,9 +22,9 @@ exports.main = async (event, context) => {
 			is_like:$.in(['$_id',article_likes_ids])
 		})
 		.match(matchObj)
-		.project({
-			content: false
-		})
+		// .project({
+		// 	content: false
+		// })
 		.skip(pageSize*(page-1))
 		.limit(pageSize)
 		.end()
