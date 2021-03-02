@@ -40,12 +40,12 @@
 					<view class="detail-bottom__icons-box" @click="openComment">
 						<uni-icons type="chat" size="22" color="#F07373"></uni-icons>
 					</view>
-					<view class="detail-bottom__icons-box" @click="likeTap(formData._id)">
+					<!-- <view class="detail-bottom__icons-box" @click="likeTap(formData._id)">
 						<uni-icons :type="formData.is_like?'heart-filled':'heart'" size="22" color="#F07373"></uni-icons>
 					</view>
 					<view class="detail-bottom__icons-box" @click="thumbsup(formData._id)">
 						<uni-icons :type="formData.is_thumbs_up?'hand-thumbsup-filled':'hand-thumbsup' " size="22" color="#F07373"></uni-icons>
-					</view>
+					</view> -->
 				</view>
 			</view>
 			<uni-popup ref="popup" type="bottom" :maskClick="false">
