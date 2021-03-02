@@ -54,7 +54,7 @@
 			},
 			getLabel(){
 				this.loading = true
-				this.$api.http('get_label',{type:'all',user_id:'601e61e354a29f0001b6916b'}).then(({code,data})=>{
+				this.$api.http('get_label',{type:'all'}).then(({code,data})=>{
 					if(code === 200){
 						this.myLabelList = data.filter(item => item.current)
 						this.recommendLabelList = data.filter(item => !item.current)
@@ -92,8 +92,7 @@
 				labelList.forEach(item=>{
 					label.push(item._id)
 				})
-				uni.showLoading()
-				this.$api.http('update_label',{label,user_id:'601e61e354a29f0001b6916b'}).then(res=>{
+				this.$api.http('update_label',{label}).then(res=>{
 					if(res.code === 200){
 						uni.showToast({
 							title:'编辑成功',
@@ -106,8 +105,6 @@
 							icon:'none'
 						})
 					}
-				}).finally(res=>{
-					uni.hideLoading()
 				})
 			}
 		}

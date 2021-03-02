@@ -37,10 +37,18 @@
 				this.listDataCash={},
 				this.pageLoad={}
 				this.getList(0)
+				
 			}
 		},
 		created(){
-			
+			uni.$on('updateArticle',(e)=>{
+				console.log('获取列表')
+				if(e === 'follow'){
+					this.listDataCash = {}
+					this.pageLoad = {}
+					this.getList(this.activeIndex)
+				}
+			})
 		},
 		methods:{
 			change(e){

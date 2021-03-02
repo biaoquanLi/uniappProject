@@ -14,6 +14,10 @@
 			isLike:{
 				type: Boolean,
 				default:false
+			},
+			types:{
+				type:String,
+				default:''
 			}
 		},
 		data() {
@@ -26,18 +30,14 @@
 		},
 		methods:{
 			async likeTap(){
-				uni.showLoading({
-					title:this.isShowLike?'取消收藏中':'添加收藏中'
-				})
 				this.$api.http('update_like',{article_id:this.articleId}).then(res => {
 					const {msg} = res
 					this.isShowLike = !this.isShowLike
+					uni.$emit('updateArticle',this.types)
 					uni.showToast({
 						title:msg,
 						icon:'none'
 					})
-				}).finally(res=>{
-					uni.hideLoading()
 				})
 				
 			}

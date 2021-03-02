@@ -18,7 +18,7 @@
 						<text>{{item.thumbs_up_count}}赞</text>
 					</view>
 				</view>
-				<button class="detail-header__button" type="default">关注</button>
+				<button class="detail-header__button" type="default" @click="follow(item.author.id)">{{item.is_author_like?'取消关注':'关注'}}</button>
 			</view>
 			<view class="detail-content">
 				<view class="detail-html">
@@ -37,15 +37,15 @@
 					<uni-icons type="compose" size="16" color="#F07373"></uni-icons>
 				</view>
 				<view class="detail-bottom__icons">
-					<view class="detail-bottom__icons-box" @click="openComment">
+					<view class="detail-bottom__icons-box" @click="open">
 						<uni-icons type="chat" size="22" color="#F07373"></uni-icons>
 					</view>
-					<!-- <view class="detail-bottom__icons-box" @click="likeTap(formData._id)">
-						<uni-icons :type="formData.is_like?'heart-filled':'heart'" size="22" color="#F07373"></uni-icons>
+					<view class="detail-bottom__icons-box" @click="likeTap(item._id)">
+						<uni-icons :type="item.is_like?'heart-filled':'heart'" size="22" color="#F07373"></uni-icons>
 					</view>
-					<view class="detail-bottom__icons-box" @click="thumbsup(formData._id)">
-						<uni-icons :type="formData.is_thumbs_up?'hand-thumbsup-filled':'hand-thumbsup' " size="22" color="#F07373"></uni-icons>
-					</view> -->
+					<view class="detail-bottom__icons-box" @click="thumbsup(item._id)">
+						<uni-icons :type="item.is_thumbs_up?'hand-thumbsup-filled':'hand-thumbsup' " size="22" color="#F07373"></uni-icons>
+					</view>
 				</view>
 			</view>
 			<uni-popup ref="popup" type="bottom" :maskClick="false">
@@ -99,12 +99,10 @@
 			this.getComments(article_id)
 		},
 		methods: {
-			getDetail(article_id) {
-				this.loading = true
-				uni.showLoading()
+			getDetail(article_id) { // 获取详情
+				this.loading = true 
 				this.$api.http('get_detail', {
-					article_id,
-					user_id: '601e61e354a29f0001b6916b'
+					article_id
 				}).then(res => {
 					if (res.code === 200) {
 						this.item = res.data
@@ -115,11 +113,10 @@
 					}
 				}).finally(res => {
 					this.loading = false
-					uni.hideLoading()
 				})
 			},
-			getComments(article_id){
-				this.$api.http('get_comments',{user_id: '601e61e354a29f0001b6916b',article_id}).then(res=>{
+			getComments(article_id){ // 获取评论列表
+				this.$api.http('get_comments',{article_id}).then(res=>{
 					if(res.code === 200){
 						this.commentsList = res.data
 						console.log(res.data)
@@ -135,7 +132,7 @@
 			close(){
 				this.$refs.popup.close()
 			},
-			submit(e){
+			submit(e){ // 提交评论或回复
 				if(!this.commentsValue){
 					uni.showToast({
 						title:'评论内容不能为空',
@@ -144,10 +141,9 @@
 					return
 				}
 				const obj = {
-					user_id:'601e61e354a29f0001b6916b',article_id:this.article_id,
+					article_id:this.article_id,
 					content:this.commentsValue
 				}
-				uni.showLoading()
 				this.$api.http('update_comment',{...obj,...this.replyFormData}).then(res=>{
 					if(res.code){
 						this.getComments(this.article_id)
@@ -163,11 +159,10 @@
 					}
 				}).finally(()=>{
 					this.close()
-					uni.hideLoading()
 					this.replyFormData = {}
 				})
 			},
-			reply(e){
+			reply(e){ // 回复
 				this.replyFormData = {
 					"comment_id":e.comments.comment_id,
 					"is_reply": e.is_reply
@@ -176,6 +171,47 @@
 					this.replyFormData.reply_id = e.comments.reply_id
 				}
 				this.openComment()
+			},
+			follow(author_id){ // 关注作者
+				this.$api.http('update_author',{author_id}).then(res => {
+					if(res.code === 200){
+						uni.$emit('updateAuthor')
+						this.item.is_author_like = !this.item.is_author_like
+						uni.showToast({
+							title:this.item.is_author_like?'关注作者成功':'取消关注作者',
+							icon:'none'
+						})
+					}
+				})
+			},
+			likeTap(article_id){ // 收藏
+				this.$api.http('update_like',{article_id}).then(res => {
+					if(res.code === 200){
+						uni.$emit('updateArticle','follow')
+						this.item.is_like = !this.item.is_like
+						uni.showToast({
+							title:this.item.is_like?'收藏成功':'取消收藏',
+							icon:'none'
+						})
+					}
+				})
+			},
+			thumbsup(article_id){ //点赞
+				this.$api.http('update_thumbsup',{article_id}).then(res => {
+					if(!this.item.is_thumbs_up){
+						this.item.thumbs_up_count ++
+					}
+					this.item.is_thumbs_up = true
+					uni.showToast({
+						title:res.msg,
+						icon:'none'
+					})
+				})
+			},
+			open(){
+				uni.navigateTo({
+					url:'../detail-comments/detail-comments?id='+this.item._id
+				})
 			}
 		}
 	}

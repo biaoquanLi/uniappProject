@@ -8,7 +8,7 @@
 			<view class="listcard-content">
 				<view class="listcard-content-title">
 					<text>{{item.title}}</text>
-					<likes :articleId='item._id' :isLike="item.is_like"></likes>
+					<likes :articleId='item._id' :types='types' :isLike="item.is_like"></likes>
 				</view>
 				<view class="listcard-content-des">
 					<view class="listcard-content-tag">
@@ -27,7 +27,7 @@
 			<view class="listcard-content mode-column">
 				<view class="listcard-content-title">
 					<text>{{item.title}}</text>
-					<likes :articleId='item._id' :isLike="item.is_like"></likes>
+					<likes :articleId='item._id' :types='types' :isLike="item.is_like"></likes>
 				</view>
 				
 				<view class="listcard-image">
@@ -55,7 +55,7 @@
 			<view class="listcard-content ">
 				<view class="listcard-content-title">
 					<text>{{item.title}}</text>
-					<likes :articleId='item._id' :isLike="item.is_like"></likes>
+					<likes :articleId='item._id' :types='types' :isLike="item.is_like"></likes>
 				</view>
 
 				<view class="listcard-content-des">
@@ -82,6 +82,10 @@
 				default () {
 					return {}
 				}
+			},
+			types:{
+				type:String,
+				default: ''
 			}
 		},
 		data() {

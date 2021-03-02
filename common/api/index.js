@@ -1,5 +1,8 @@
-const http = (name,data) => {
+const http = (name,data,isLoading = true) => {
 	const newData = {user_id:'601e61e354a29f0001b6916b',...data}
+	if(isLoading){
+		uni.showLoading({title:'加载中'})
+	}
 	return new Promise((resolve,reject)=>{
 		uniCloud.callFunction({
 			name,
@@ -16,6 +19,10 @@ const http = (name,data) => {
 				title:result.data,
 				duration: 2000
 			})
+		}).finally(res=>{
+			if(isLoading){
+				uni.hideLoading()
+			}
 		})
 	})
 }

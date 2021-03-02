@@ -35,7 +35,7 @@
 				
 			},
 			getLabel(){
-				this.$api.http('get_label',{user_id:'601e61e354a29f0001b6916b'}).then(res => {
+				this.$api.http('get_label').then(res => {
 					const {data} = res
 					data.unshift({name:'全部'})
 					this.labelList = data
