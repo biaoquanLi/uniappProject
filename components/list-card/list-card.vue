@@ -1,5 +1,5 @@
 <template>
-	<view @click="toArticlDetail">
+	<view @click="toArticleDetail">
 		<!-- 基础卡片 -->
 		<view class="list-card" v-if="item.mode === 'base'">
 			<view class="listcard-image">
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+	
 	export default {
 		props: {
 			item: {
@@ -89,8 +90,12 @@
 			};
 		},
 		methods:{
-			toArticlDetail(){
-				console.log('去详情页')
+			toArticleDetail(){
+				this.$emit('click')
+				uni.navigateTo({
+					url:'/pages/home-detail/home-detail?article_id='+this.item._id
+				})
+				
 			}
 		}
 	}

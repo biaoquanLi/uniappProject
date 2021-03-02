@@ -18,7 +18,7 @@
 				</view>
 				<view v-else class="navbar-search">
 					<!-- 搜索页显示  -->
-					<input class="navbar-search_text" type="text" @input="input"  placeholder="请输入您要搜索的内容"  />
+					<input class="navbar-search_text" type="text" @confirm="confirm" @input="input" v-model="val"  placeholder="请输入您要搜索的内容"  />
 				</view>
 			</view>
 		</view>
@@ -29,6 +29,10 @@
 <script>
 	export default {
 		props:{
+			value:{
+				type:[String,Number],
+				default:''
+			},
 			isSearch:{
 				type:Boolean,
 				default:false
@@ -38,7 +42,13 @@
 			return {
 				statusBarHeight:20,
 				navBarHeight: 45,
-				windowWidth: 375
+				windowWidth: 375,
+				val: ''
+			}
+		},
+		watch:{
+			value(newVal){
+				this.val = newVal
 			}
 		},
 		created(){
@@ -65,6 +75,10 @@
 				uni.navigateTo({
 					url:'/pages/home-search/home-search'
 				})
+			},
+			confirm(e){
+				const {value} = e.detail
+				this.$emit('confirm',value)
 			},
 			input(e){
 				const {value} = e.detail

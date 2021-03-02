@@ -6,7 +6,7 @@
 				 >{{item.name}}</view>
 			</view>
 		</scroll-view>
-		<view class="tab-icons" >
+		<view class="tab-icons" @click="openHomeLabel">
 			<uni-icons type="gear" size="26" color="#666"></uni-icons>
 		</view>
 	</view>
@@ -37,6 +37,11 @@
 			clickTab(item,index){
 				this.activeIndex = index
 				this.$emit('tab',{item,index})
+			},
+			openHomeLabel(){
+				uni.navigateTo({
+					url:'/pages/home-label/home-label'
+				})
 			}
 		}
 	}

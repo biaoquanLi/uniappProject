@@ -34,11 +34,19 @@
 		watch:{
 			tab(newVal){
 				if(newVal.length === 0) return
+				this.listDataCash={},
+				this.pageLoad={}
 				this.getList(0)
+				
 			}
 		},
 		created(){
-			
+			uni.$on('updateArticle',()=>{
+				console.log('获取列表')
+				this.listDataCash = {}
+				this.pageLoad = {}
+				this.getList(this.activeIndex)
+			})
 		},
 		methods:{
 			change(e){
