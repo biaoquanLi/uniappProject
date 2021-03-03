@@ -26,6 +26,9 @@
 				this.getLabel()
 			})
 		},
+		onShareAppMessage() {
+			
+		},
 		methods: {
 			swiperChange(current){
 				this.currentIndex = current

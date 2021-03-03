@@ -1,13 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/tabbar/follow/follow",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-
-		},
+	
+		
 		{
 			"path": "pages/tabbar/index/index",
 			"style": {
@@ -16,9 +10,17 @@
 			}
 		},
 		{
+			"path": "pages/tabbar/follow/follow",
+			"style": {
+				"navigationBarTitleText": "关注",
+				"enablePullDownRefresh": false
+			}
+
+		},
+{
 			"path": "pages/tabbar/my/my",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "个人中心",
 				"enablePullDownRefresh": false
 			}
 
@@ -39,7 +41,7 @@
 		}, {
 			"path": "pages/home-detail/home-detail",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "文章详情",
 				"enablePullDownRefresh": false
 			}
 
@@ -50,6 +52,21 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/my-article/my-article",
+			"style": {
+				"navigationBarTitleText": "我的文章",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/feedback/feedback",
+			"style": {
+				"navigationBarTitleText": "意见反馈",
+				"enablePullDownRefresh": false
+			}
+		
 		}
 	],
 	"globalStyle": {

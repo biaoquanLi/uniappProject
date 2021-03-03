@@ -1,5 +1,6 @@
+import store from '../../store/index.js'
 const http = (name,data,isLoading = true) => {
-	const newData = {user_id:'601e61e354a29f0001b6916b',...data}
+	const newData = {user_id:store.state.userInfo._id,...data}
 	if(isLoading){
 		uni.showLoading({title:'加载中'})
 	}
@@ -8,6 +9,9 @@ const http = (name,data,isLoading = true) => {
 			name,
 			data:newData
 		}).then(res=>{
+			if(isLoading){
+				uni.hideLoading()
+			}
 			const {result} = res
 			if(result.code === 200){
 				resolve(result)
@@ -15,14 +19,13 @@ const http = (name,data,isLoading = true) => {
 				reject(result)
 			}
 		}).catch(err => {
+			if(isLoading){
+				uni.hideLoading()
+			}
 			uni.showToast({
 				title:result.data,
 				duration: 2000
 			})
-		}).finally(res=>{
-			if(isLoading){
-				uni.hideLoading()
-			}
 		})
 	})
 }

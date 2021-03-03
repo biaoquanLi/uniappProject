@@ -57,6 +57,7 @@
 				this.activeIndex = e.detail.current
 			},
 			getFollowList(){
+				this.articleShow = false
 				this.$api.http('get_follow').then(res => {
 					if(res.code === 200){
 						this.articleList = res.data

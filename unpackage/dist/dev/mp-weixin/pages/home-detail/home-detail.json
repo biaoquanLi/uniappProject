@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "文章详情",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "ls-skeleton": "/components/ls-skeleton/ls-skeleton",
