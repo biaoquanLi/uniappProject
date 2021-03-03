@@ -1,7 +1,7 @@
 <template>
 	<swiper class="home-swiper" @change="change" :current="activeIndex">
 		<swiper-item class="swiper-item" v-for="(item,index) in tab" :key="index">
-			<list-item :listData="listDataCash[index]" @loadMore="loadMore" :status="pageLoad[index]&&pageLoad[index].loadStatus"></list-item>
+			<list-item :listData="listDataCash[index]" @loadMore="loadMore" :status="pageLoad[index]&&pageLoad[index].loadStatus||'loading'"></list-item>
 		</swiper-item>
 	</swiper>
 </template>
