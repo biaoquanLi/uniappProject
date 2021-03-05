@@ -23,7 +23,8 @@ const http = (name,data,isLoading = true) => {
 				uni.hideLoading()
 			}
 			uni.showToast({
-				title:result.data,
+				title:'数据加载失败',
+				icon:'none',
 				duration: 2000
 			})
 		})

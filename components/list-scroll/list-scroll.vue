@@ -28,8 +28,10 @@
 		flex: 1;
 		overflow: hidden;
 		box-sizing: border-box;
+		height: 100%;
 		.list-scroll {
-			height: 85vh;
+			height: 100%;
+			overflow: auto;
 			display: flex;
 			flex-direction: column;
 		}

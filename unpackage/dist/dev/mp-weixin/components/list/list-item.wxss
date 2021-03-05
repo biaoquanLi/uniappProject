@@ -27,4 +27,7 @@
 .list-scroll {
   height: 100%;
 }
+.list-scroll .status {
+  margin-bottom: 10px;
+}
 

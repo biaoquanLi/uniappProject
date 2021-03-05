@@ -30,9 +30,11 @@
           flex: 1;
   overflow: hidden;
   box-sizing: border-box;
+  height: 100%;
 }
 .scroll .list-scroll {
-  height: 85vh;
+  height: 100%;
+  overflow: auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
